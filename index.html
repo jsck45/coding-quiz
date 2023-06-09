@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coding Quiz</title>
+  <link rel="stylesheet" href="./assets/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <div class="highscore">
+          <h2 id="highscoresHeading">Highscores</h2>
+        </div>
+        <div class="timer">
+          <h2>Time Left: <span id="timerValue">75</span> seconds</h2>
+        </div>
+      </div>
+      
+      <div id="quizContainer">
+        <h1>Coding Quiz</h1>
+        <p id="question" style="display: none;"></p>
+        <ul id="choices" style="display: none;"></ul>
+        <p id="feedback" class="feedback" style="display: none;"></p>
+        <div id="initialsContainer" style="display: none;">
+          <label for="initials">Enter your initials:</label>
+          <input type="text" id="initials" placeholder="Your initials" />
+          <button type="submit" id="submitScore">Submit</button>
+        </div>
+        <button id="startButton">Start Quiz</button>
+      </div>
+
+  <script src = "assets/script2.js"></script>
+</body>
+</html>

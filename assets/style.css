@@ -1,0 +1,72 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  .timer {
+    font-size: 18px;
+  }
+  .highscore {
+    font-size: 18px;
+  }
+  #quizContainer {
+    text-align: center;
+    margin-top: 50px;
+  }
+  .answerButton {
+    display: block;
+    margin: 10px auto;
+    padding: 0, 10px;
+    list-style-type: none;
+    border-radius: 5px;
+  }
+  .feedback {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  #initialsContainer {
+    display: none;
+    margin-top: 20px;
+  }
+  
+  #initialsContainer label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  #initialsContainer input[type="text"] {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  
+  #initialsContainer button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #initialsContainer button:hover {
+    background-color: #45a049;
+  }
+  
+  #highscoreList {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+  }
+  
+  #highscoreList li {
+    margin-bottom: 10px; /* Add some spacing between list items */
+  }
+  
+  h2#highscoresHeading {
+    cursor: pointer;
+  }
+
+  
