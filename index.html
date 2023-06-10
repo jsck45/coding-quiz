@@ -3,19 +3,23 @@
 <head>
   <title>Coding Quiz</title>
   <link rel="stylesheet" href="./assets/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Orbit&family=Quicksand:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
+  <img src = "./assets/background.png" id = "backgroundImage" alt="Background Image">
     <div class="container">
         <div class="highscore">
-          <h2 id="highscoresHeading">Highscores</h2>
+          <h2 id="highscoresHeading">hi-score <span id="highestScore"></span></h2>
         </div>
         <div class="timer">
-          <h2>Time Left: <span id="timerValue">75</span> seconds</h2>
+          <h2>time left <span id="timerValue">75</span>s</h2>
         </div>
       </div>
       
       <div id="quizContainer">
-        <h1>Coding Quiz</h1>
+        <h1 id="quizHeading">coding quiz</h1>
         <p id="question" style="display: none;"></p>
         <ul id="choices" style="display: none;"></ul>
         <p id="feedback" class="feedback" style="display: none;"></p>
@@ -24,7 +28,7 @@
           <input type="text" id="initials" placeholder="Your initials" />
           <button type="submit" id="submitScore">Submit</button>
         </div>
-        <button id="startButton">Start Quiz</button>
+        <button id="startButton">start!</button>
       </div>
 
   <script src = "assets/script2.js"></script>

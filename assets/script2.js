@@ -34,8 +34,11 @@ const questions = [
 const startButton = document.getElementById("startButton");
 startButton.addEventListener("click", startQuiz);
 
+const quizHeading = document.getElementById("quizHeading");
+
 function startQuiz() {
   startButton.style.display = "none";
+  quizHeading.style.display = "none";
   displayQuestion();
   startTimer();
 }
@@ -88,15 +91,17 @@ function displayQuestion() {
   questionElement.style.display = "block";
   choicesElement.style.display = "block";
   feedbackElement.textContent = ""; // Clear previous feedback
+
 }
+
 
 function handleAnswerClick(choiceIndex) {
   const currentQuestion = questions[currentQuestionIndex];
   if (currentQuestion.correctAnswerIndex === choiceIndex) {
-    showFeedback("Correct");
+    showFeedback("correct");
   } else {
     timeLeft -= 15;
-    showFeedback("Incorrect");
+    showFeedback("incorrect");
   }
 }
 
@@ -134,14 +139,43 @@ function endQuiz() {
   let finalScore = timeLeft;
 
   quizContainer.innerHTML = `
-    <h1>All done!</h1>
+    <h1 id=gameOverText>GAME OVER</h1>
     <p>Your score is ${finalScore}</p>
     <form id="scoreForm">
       <label for="initials">Enter your initials:</label>
       <input type="text" id="initials" placeholder="Your initials" />
-      <button type="submit" id="submitScore">Submit</button>
+      <br> 
+      <button type="submit" id="submitScore" style="margin-top: 20px;">submit</button>
     </form>
     `;
+
+    //GAME OVER text styling
+    const gameOverText = document.getElementById("gameOverText");
+    gameOverText.style.background = "linear-gradient(to bottom, #eb4c34, #ebbd34)";
+    gameOverText.style.webkitBackgroundClip = "text";
+    gameOverText.style.webkitTextFillColor = "transparent";
+    gameOverText.style.fontSize = "50px";
+
+    let isHidden = false;
+    
+    const flickerInterval = setInterval(() => {
+      isHidden = !isHidden;
+      gameOverText.style.visibility = isHidden ? "hidden" : "visible";
+    }, 600);
+    
+    setTimeout(() => {
+      clearInterval(flickerInterval);
+      gameOverText.style.visibility = "visible"; 
+    }, 4000);
+
+    //SUBMIT BUTTON styling
+    const submitButton = document.getElementById("submitScore");
+    submitButton.style.background = "aqua";
+    submitButton.style.color = "#eb9334";
+    submitButton.style.borderColor = "aqua";
+    submitButton.style.fontFamily = "Bagel Fat One, cursive";
+    submitButton.style.borderRadius = "10px";
+    submitButton.style.fontSize = "18px";
 
   const scoreForm = document.getElementById("scoreForm");
   scoreForm.addEventListener("submit",submitScore);
@@ -165,6 +199,7 @@ function endQuiz() {
     }
   }  
 }
+
 function displayHighScores() {
 
   startButton.style.display = "none";
@@ -172,8 +207,8 @@ function displayHighScores() {
     choicesElement.style.display = "none";
     feedbackElement.style.display = "none";
     initialsContainer.style.display = "none";
-    timerValueElement.style.display = "none"; // Hide the timer
-  
+    timerValueElement.style.display = "none"; 
+
     const headingElements = document.querySelectorAll(".container h2");
     headingElements.forEach((headingElement) => {
       const parentElement = headingElement.parentNode;
@@ -190,30 +225,70 @@ function displayHighScores() {
     highScoresContainer.classList.add("highscore-container");
   
     const heading = document.createElement("h2");
-    heading.textContent = "Highscores";
+    heading.textContent = "high scores";
     highScoresContainer.appendChild(heading);
+    heading.style.fontFamily = "Orbit, sans-serif";
+    heading.style.fontSize = "40px";
   
     const list = document.createElement("ol");
-    highScores.forEach((scoreData) => {
+    list.style.padding = "0"; // Remove the default padding
+    list.style.textAlign = "center"; // Center the list
+    list.style.listStyle = "none";
+
+    for (let i = 0; i < highScores.length; i++) {
+      const scoreData = highScores[i];
       const listItem = document.createElement("li");
-      listItem.textContent = `${scoreData.initials}: ${scoreData.score}`;
+      listItem.style.display = "flex"; // Use flex display for better positioning
+      listItem.style.justifyContent = "center"; // Center the content horizontally
+      listItem.style.alignItems = "center"; // Center the content vertically
+      listItem.style.marginBottom = "10px"; // Add some vertical spacing between items
+    
+      const listItemNumber = document.createElement("span");
+      listItemNumber.style.fontWeight = "bold"; // Make the number bold
+      listItemNumber.style.marginRight = "10px"; // Add spacing between the number and text
+      listItemNumber.textContent = `${i + 1}.`; // Set the number
+      listItem.appendChild(listItemNumber);
+    
+    
+      const listItemText = document.createElement("span");
+      listItemText.textContent = `${scoreData.initials}: ${scoreData.score}`;
+      listItem.appendChild(listItemText);
+      
       list.appendChild(listItem);
-    });
+    };
   
     highScoresContainer.appendChild(list);
     quizContainer.appendChild(highScoresContainer);
+
   
     // Add "Go Back" button
     const goBackButton = document.createElement("button");
-    goBackButton.textContent = "Go Back";
+    goBackButton.textContent = "go back";
     goBackButton.addEventListener("click", refreshGame);
     quizContainer.appendChild(goBackButton);
-  
+
+    goBackButton.style.margin = "10px";
+    goBackButton.style.backgroundColor = "aqua";
+    goBackButton.style.borderColor = "aqua";
+    goBackButton.style.borderRadius = "10px";
+    goBackButton.style.color = "#eb9334";
+    goBackButton.style.fontFamily = "Bagel Fat One, cursive";
+    goBackButton.style.fontSize = "20px";
+
     // Add "Clear High Scores" button
     const clearHighScoresButton = document.createElement("button");
-    clearHighScoresButton.textContent = "Clear High Scores";
+    clearHighScoresButton.textContent = "clear high scores";
     clearHighScoresButton.addEventListener("click", clearHighScores);
     quizContainer.appendChild(clearHighScoresButton);
+
+    clearHighScoresButton.style.margin = "10px";
+    clearHighScoresButton.style.backgroundColor = "aqua";
+    clearHighScoresButton.style.borderColor = "aqua";
+    clearHighScoresButton.style.borderRadius = "10px";
+    clearHighScoresButton.style.color = "#eb9334";
+    clearHighScoresButton.style.fontFamily = "Bagel Fat One, cursive";
+    clearHighScoresButton.style.fontSize = "20px";
+
   }
   
   // Refresh the game
@@ -231,7 +306,27 @@ function displayHighScores() {
     }
   }
 
-  // Highscore 
+// HIGHSCORE
 
 const highscoresHeading = document.getElementById("highscoresHeading");
 highscoresHeading.addEventListener("click", displayHighScores);
+
+function displayHighestScore() {
+  // Retrieve high scores from localStorage
+  let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+
+  // Sort high scores in descending order
+  highScores.sort((a, b) => b.score - a.score);
+
+  // Check if there are any high scores
+  if (highScores.length > 0) {
+    // Get the highest score
+    let highestScore = highScores[0].score;
+
+    // Display the highest score in the span
+    const highestScoreSpan = document.getElementById("highestScore");
+    highestScoreSpan.textContent = highestScore;
+  }
+}
+
+displayHighestScore();
