@@ -1,3 +1,4 @@
+/* Background Image */
 #backgroundImage {
   position: fixed;
   top: 0;
@@ -7,101 +8,145 @@
   object-fit: cover;
   z-index: -1;
 }
-.container {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 20px;
-    margin-top: 100px;
-    color: white;
-  }
-  .timer {
-    font-size: 12px;
-    font-family: 'Orbit', sans-serif;
-  }
-  #timerValue {
-    font-size:24px;
-    font-family: 'Orbit', sans-serif;
-    color:#eb9334;
-  }
-  .highscore {
-    font-size: 12px;
-    font-family: 'Orbit', sans-serif;
-  }
-  #highestScore {
-    font-size: 24px;
-    font-family: 'Orbit', sans-serif;
-    color:#eb9334;
-  }
-  #quizContainer {
-    text-align: center;
-    margin: 70px 200px 0;
-    font-family: 'Quicksand', sans-serif;
-    color: white;
-  }
-  #quizContainer h1 {
-    font-family: 'Orbit', sans-serif;
-    font-size:45px;
-    margin: 20px;
-  }
-  #startButton {
-    font-size: 24px;
-    font-family: 'Bagel Fat One', cursive;
-    background-color: aqua;
-    border-radius: 10px;
-    border-color: aqua;
-    color:#eb9334;
-  }
-  #choices {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-    align-items: start;
-  }
-  .answerButton {
-    display: block;
-    margin: 15px auto;
-    padding: 0, 10px;
-    list-style-type: none;
-    border-radius: 5px;
-    border-color: white;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 15px;
-  }
-  .feedback {
-    margin: 10px;
-    font-weight: bold;
-    font-size: 20px;
-    color:#eb9334;
-    font-family: 'Quicksand', sans-serif;
-  }
-  #initialsContainer {
-    display: none;
-    margin-top: 20px;
-  }
-  #initialsContainer label {
-    display: block;
-    margin-bottom: 10px;
-  }
-  #initialsContainer input[type="text"] {
-    width: 200px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 10px;
-  }
-    #initialsContainer button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-    #initialsContainer button:hover {
-    background-color: #45a049;
-  }
-  h2#highscoresHeading {
-    cursor: pointer;
-  }
 
-  
+/* Header Container Styles */
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+  margin-top: 100px;
+  color: white;
+}
+
+.timer {
+  font-size: 12px;
+  font-family: 'Orbit', sans-serif;
+}
+
+#timerValue {
+  font-size: 24px;
+  font-family: 'Orbit', sans-serif;
+  color: #eb9334;
+}
+
+.highscore {
+  font-size: 12px;
+  font-family: 'Orbit', sans-serif;
+}
+
+h2#highscoresHeading {
+  cursor: pointer;
+}
+
+.highscoreList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  align-content: space-around;
+  justify-content: center;
+}
+
+#highestScore {
+  font-size: 24px;
+  font-family: 'Orbit', sans-serif;
+  color: #eb9334;
+}
+
+/* Quiz Container Styles */
+#quizContainer {
+  text-align: center;
+  margin: 70px 200px 0;
+  font-family: 'Quicksand', sans-serif;
+  color: white;
+}
+
+#quizContainer h1 {
+  font-family: 'Orbit', sans-serif;
+  font-size: 45px;
+  margin: 20px;
+}
+
+#question {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+#choices {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-direction: column;
+  align-content: space-around;
+  justify-content: center;
+}
+
+.answerButton {
+  margin-bottom: 15px;
+  padding: 0 5px;
+  border-radius: 5px;
+  border-color: white;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+}
+
+.selectedAnswer {
+  background-color: aqua;
+  border-color: aqua;
+  color: #eb9334;
+  font-weight: bolder;
+}
+
+.feedback {
+  margin: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #eb9334;
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Initials Container Styles */
+#initialsContainer {
+  display: none;
+  margin-top: 20px;
+}
+
+#initialsContainer label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#initialsContainer input[type="text"] {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+/* Button Styles */
+.submit-button, #startButton {
+  font-size: 24px;
+  font-family: 'Bagel Fat One', cursive;
+  background-color: aqua;
+  border-radius: 10px;
+  border-color: aqua;
+  color: #eb9334;
+  margin-top: 25px;
+}
+
+.go-back-button,
+.clear-highscores-button {
+  font-size: 20px;
+  font-family: 'Bagel Fat One', cursive;
+  background-color: aqua;
+  border-radius: 10px;
+  border-color: aqua;
+  color: #eb9334;
+  margin: 10px;
+}
