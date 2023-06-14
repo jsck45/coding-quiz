@@ -47,13 +47,15 @@ let currentQuestionIndex = 0;
 startButton.addEventListener("click", startQuiz);
 
 // Functions
+
+// initializing function
 function startQuiz() {
   startButton.style.display = "none";
   quizHeading.style.display = "none";
   displayQuestion();
   startTimer();
 }
-
+// Timer starts at 75 seconds and counts down 1 second at a time, stopping at 0
 function startTimer() {
   timer = setInterval(updateTimer, 1000);
 }
@@ -68,6 +70,7 @@ function updateTimer() {
   }
 }
 
+// function to show current question and display the answer choices as buttons
 function displayQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
   questionElement.textContent = currentQuestion.question;
@@ -87,8 +90,10 @@ function displayQuestion() {
   feedbackElement.textContent = "";
 }
 
+// function to determine what happens when an answer is clicked
 function handleAnswerClick(choiceIndex) {
   const currentQuestion = questions[currentQuestionIndex];
+  // shows feedback correct/incorrect based on what is selected
   if (currentQuestion.correctAnswerIndex === choiceIndex) {
     showFeedback("correct");
   } else {
@@ -106,7 +111,7 @@ function handleAnswerClick(choiceIndex) {
 function showFeedback(message) {
   feedbackElement.textContent = message;
   feedbackElement.style.display = "inline";
-
+  // feedback flashes up on screen for 1/2 second before moving on to the next question
   setTimeout(() => {
     feedbackElement.style.display = "none";
   }, 500);
@@ -122,6 +127,7 @@ function showFeedback(message) {
   }, 500);
 }
 
+// Removes all elements from the page and loads a submit form at the end of the quiz
 function endQuiz() {
   questionElement.style.display = "none";
   choicesElement.style.display = "none";
@@ -139,7 +145,7 @@ function endQuiz() {
       <button type="submit" id="submitScore">submit</button>
     </form>
   `;
-
+// GAME OVER flashes on the screen at the conclusion of the quiz
   const gameOverText = document.getElementById("gameOverText");
   gameOverText.style.background = "linear-gradient(to bottom, #eb4c34, #ebbd34)";
   gameOverText.style.webkitBackgroundClip = "text";
@@ -152,7 +158,7 @@ function endQuiz() {
   const scoreForm = document.getElementById("scoreForm");
   scoreForm.addEventListener("submit", submitScore);
 }
-
+// submit form which leads to highscores page when user inputs their initials
 function submitScore(event) {
   event.preventDefault();
 
@@ -171,6 +177,7 @@ function submitScore(event) {
   }
 }
 
+// User initials + high score are saved to local storage which is then displayed on the high scores page as an ordered list
 function displayHighScores() {
   startButton.style.display = "none";
   questionElement.style.display = "none";
@@ -229,6 +236,7 @@ function displayHighScores() {
   highScoresContainer.appendChild(list);
   quizContainer.appendChild(highScoresContainer);
 
+  // 2 buttons under the list of high scores - go back takes you back to the start of the game, clear high scores removes the local storage of high scores and clears the page
   const goBackButton = document.createElement("button");
   goBackButton.textContent = "go back";
   goBackButton.classList.add("go-back-button");
@@ -257,7 +265,7 @@ function clearHighScores() {
 
 const highscoresHeading = document.getElementById("highscoresHeading");
 highscoresHeading.addEventListener("click", displayHighScores);
-
+// hi-score heading on top left corner displays the current highest score and when clicked, leads to the high score page
 function displayHighestScore() {
   let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
